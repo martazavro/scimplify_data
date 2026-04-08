@@ -1,6 +1,78 @@
 {
-  "_README": "Every 'passage' and 'reference_explanation' field below is a PLACEHOLDER. You MUST replace each TODO entry with a real passage from a real paper before running experiments. The 'key_terms', 'category', and 'difficulty' fields are pre-populated to give you a balanced 30-item set, but feel free to adjust them as you find real passages. Categories: concepts_only=8, recent_paper=8, both=8, neither=6. Total=30.",
   "items": [
+
+    {
+    "id": "v001",
+    "passage": "Models were drawn from a large parameter space of convolutional neural networks (CNNs) expressing an inclusive version of the hierarchical processing concept. CNNs approximate the general retinotopic organization of the ventral stream via spatial convolution, with computations in any one region of the visual field identical to those elsewhere. Each convolutional layer is composed of simple and neuronally plausible basic operations, including linear filtering, thresholding, pooling, and normalization. These layers are stacked hierarchically to construct deep neural networks. Each model is specified by a set of 57 parameters controlling the number of layers and parameters at each layer, fan-in and fan-out, activation thresholds, pooling exponents, and local receptive field sizes at each layer.",
+    "source": "Yamins, Hong, Cadieu, Solomon, Seibert, DiCarlo (2014). Performance-optimized hierarchical models predict neural responses in higher visual cortex. PNAS 111(23):8619-8624. doi:10.1073/pnas.1403112111",
+    "key_terms": ["convolutional neural networks", "ventral stream", "hierarchical processing", "spatial convolution", "pooling", "receptive field"],
+    "category": "concepts_only",
+    "difficulty": "easy",
+    "reference_explanation": "The authors searched a large family of convolutional neural networks where each model is built from stacked layers of simple operations (filtering, thresholding, pooling, normalization) and described by 57 architectural parameters. The convolutional structure mirrors the retinotopic organization of the ventral visual stream, applying the same computation across all locations in the visual field, and the layers stack hierarchically to form deep networks."
+    },
+    {
+      "id": "v002",
+      "passage": "Critically, we found that the top layer of the high-performing HMO model achieves high predictivity for individual IT neural sites, predicting 48.5 ± 1.3% of the explainable IT neuronal variance. This represents a nearly 100% improvement over the best comparison models and is comparable to the prediction accuracy of state-of-the-art models of lower-level ventral areas such as V1 on complex stimuli. In comparison, although the HMAX model was better at predicting IT responses than baseline V1 or SIFT, it was not significantly different from the V2-like model. To control for how much neural predictivity should be expected from any algorithm with high categorization performance, we assessed semantic ideal observers, including a hypothetical model that has perfect access to all category labels.",
+      "source": "Yamins et al. (2014). Performance-optimized hierarchical models predict neural responses in higher visual cortex. PNAS 111(23):8619-8624.",
+      "key_terms": ["neural predictivity", "explained variance", "ventral stream", "HMAX", "ideal observer"],
+      "category": "concepts_only",
+      "difficulty": "medium",
+      "reference_explanation": "The top layer of Yamins et al.'s performance-optimized model explains about 48.5% of the variance in individual IT neuron responses that can in principle be explained — roughly twice as well as previous models like HMAX, and on par with the best models of much earlier visual areas like V1. To rule out the worry that any high-performing categorizer would do this well, the authors also tested 'ideal observer' baselines that have perfect category labels, and showed those baselines fall well short of the model."
+    },
+    {
+      "id": "v003",
+      "passage": "We trained a deep neural network to path integrate within a square arena (2.2 m × 2.2 m), using simulated trajectories modelled on those of foraging rodents. The network was required to update its estimate of location and head direction using translational and angular velocity signals, mirroring those available to the mammalian brain. Velocity was provided as input to a recurrent network with a long short-term memory (LSTM) architecture, which was trained using backpropagation through time, allowing the network to dynamically combine current input signals with activity patterns reflecting past events. The LSTM projected to place and head direction units via a linear layer—units with activity defined as a simple linear function of their input. Importantly, the linear layer was subject to regularization, in particular dropout, such that 50% of the units were randomly silenced at each time step.",
+      "source": "Banino, Barry, Uria, Blundell, Lillicrap, Mirowski et al. (2018). Vector-based navigation using grid-like representations in artificial agents. Nature 557:429-433. doi:10.1038/s41586-018-0102-6",
+      "key_terms": ["path integration", "LSTM", "recurrent network", "backpropagation through time", "place cells", "head direction cells", "dropout"],
+      "category": "concepts_only",
+      "difficulty": "medium",
+      "reference_explanation": "The authors trained an LSTM-based recurrent network to do path integration: starting from a known location and just integrating velocity and head-direction signals over time, it had to keep track of where a simulated rodent was in a square arena. The LSTM fed into a linear readout layer that predicted activity over place cells and head-direction cells, with dropout silencing half of the linear-layer units at each step — a regularization trick that turned out to matter a lot for what the network learned."
+    },
+    {
+      "id": "v004",
+      "passage": "Strikingly, individual units within the linear layer of the network developed stable spatial activity profiles similar to those of neurons within the entorhinal network. Specifically, 129 of the 512 linear layer units (25.2%) resembled grid cells, exhibiting significant hexagonal periodicity (gridness) versus a null distribution generated by a conservative field shuffling procedure. The scale of the grid-patterns, measured from the spatial autocorrelograms of the activity maps, varied between units (range 28 cm to 115 cm, mean 66 cm) and followed a multi-modal distribution, consistent with empirical results from rodent grid cells. The linear layer also exhibited units resembling head direction cells (10.2%), border cells (8.7%), and a small number of place cells as well as conjunctions of these representations.",
+      "source": "Banino et al. (2018). Vector-based navigation using grid-like representations in artificial agents. Nature 557:429-433.",
+      "key_terms": ["grid cells", "place cells", "head direction cells", "entorhinal cortex", "hexagonal periodicity", "border cells"],
+      "category": "concepts_only",
+      "difficulty": "easy",
+      "reference_explanation": "Without ever being told to, units in the network's linear layer started behaving like cells found in the entorhinal cortex of real rodents. About a quarter of them showed the hexagonal firing pattern characteristic of grid cells, with grid scales spanning roughly 28 to 115 cm and clustering at multiple discrete values just as biological grid cells do. The same layer also produced head-direction cells, border cells, and a few place cells — essentially the standard cast of entorhinal cell types — entirely as a side effect of training the network to path integrate."
+    },
+    {
+      "id": "v005",
+      "passage": "The most common method for calculating gradients in deep ANNs is backprop. It uses the chain rule to recursively calculate gradients backwards from the output. But backprop rests on biologically implausible assumptions, such as symmetric feedback weights and distinct forward and backward passes of information. Many different learning algorithms, not just backprop, can provide estimates of a gradient, and some of these do not suffer from backprop's biological implausibility. However, algorithms differ in their variance and bias properties. Algorithms such as weight/node perturbation, which reinforce random changes in synaptic weights through rewards, have high variance in their path along the gradient. Algorithms that use random feedback weights to communicate gradient information have high bias.",
+      "source": "Richards, Lillicrap, Beaudoin, Bengio, Bogacz, Christensen et al. (2019). A deep learning framework for neuroscience. Nature Neuroscience 22:1761-1770. doi:10.1038/s41593-019-0520-2",
+      "key_terms": ["backpropagation", "biological plausibility", "credit assignment problem", "feedback alignment", "weight perturbation"],
+      "category": "concepts_only",
+      "difficulty": "medium",
+      "reference_explanation": "Backpropagation works by walking gradients backward through a network using the chain rule, but it requires biologically unrealistic things like exactly symmetric feedback weights and a clean separation between forward and backward passes. Many alternative learning rules can also estimate gradients without those assumptions, but they trade off in different ways: perturbation-based methods give noisy (high-variance) gradient estimates, while methods using random feedback weights give systematically biased ones."
+    },
+    {
+      "id": "v006",
+      "passage": "Learning is easier when we have prior knowledge about the kind of problems that we will have to solve. Inductive biases are a means of embedding such prior knowledge into an optimization system. Such inductive biases may be generic (such as hierarchy) or specific (such as convolutions). Importantly, the inductive biases that exist in the brain will have been shaped by evolution to increase an animal's fitness in both the broad context of life on Earth (for example, life in a three-dimensional world where one needs to obtain food, water, shelter, etc.), and in specific ecological niches.",
+      "source": "Richards et al. (2019). A deep learning framework for neuroscience. Nature Neuroscience 22:1761-1770.",
+      "key_terms": ["inductive biases", "optimization", "hierarchy", "convolution", "evolution"],
+      "category": "concepts_only",
+      "difficulty": "easy",
+      "reference_explanation": "Inductive biases are the prior assumptions baked into a learning system that make it easier to learn certain kinds of problems — they can be very general (like assuming the world has hierarchical structure) or very specific (like the translation invariance built into convolutional networks). In brains, these biases were shaped by evolution to fit both broad facts about life on Earth and the particular demands of each species' ecological niche."
+    },
+    {
+      "id": "v007",
+      "passage": "RDM is a square symmetric matrix in which the diagonal entries reflect comparisons between identical stimuli and are 0, by definition. Each off-diagonal value indicates the dissimilarity between the activity patterns associated with two different stimuli. RDM summarizes the information carried by a given representation from an area in the brain or a computational model. We had 96 stimuli, of which half were animates and the other half were inanimates. To calculate the RDM for a brain region or a computational model, a 96×96 matrix was made in which each cell was filled with the dissimilarity value between the response patterns elicited by two stimuli. For each pair of stimuli, the dissimilarity measure was 1 minus the Pearson correlation between the response patterns elicited by those stimuli in a brain region or a computational model.",
+      "source": "Khaligh-Razavi & Kriegeskorte (2014). Deep Supervised, but Not Unsupervised, Models May Explain IT Cortical Representation. PLoS Computational Biology 10(11):e1003915.",
+      "key_terms": ["representational dissimilarity matrix", "RDM", "Pearson correlation", "representational similarity analysis"],
+      "category": "concepts_only",
+      "difficulty": "easy",
+      "reference_explanation": "A representational dissimilarity matrix is a square table where each cell tells you how different the response patterns are for two stimuli — zeros on the diagonal because a stimulus is identical to itself, and off-diagonal values measuring dissimilarity (here, one minus the Pearson correlation between the two response patterns). Building one for any representation, brain or model, gives a compact summary of that representation's geometry that can be compared across systems."
+    },
+    {
+      "id": "v008",
+      "passage": "Inferior temporal (IT) cortex in human and nonhuman primates serves visual object recognition. Computational object-vision models, although continually improving, do not yet reach human performance. It is unclear to what extent the internal representations of computational models can explain the IT representation. Here we investigate a wide range of computational model representations (37 in total), testing their categorization performance and their ability to account for the IT representational geometry. The models include well-known neuroscientific object-recognition models (e.g. HMAX, VisNet) along with several models from computer vision (e.g. SIFT, GIST, self-similarity features, and a deep convolutional neural network). We compared the representational dissimilarity matrices (RDMs) of the model representations with the RDMs obtained from human IT (measured with fMRI) and monkey IT (measured with cell recording) for the same set of stimuli.",
+      "source": "Khaligh-Razavi & Kriegeskorte (2014). Deep Supervised, but Not Unsupervised, Models May Explain IT Cortical Representation. PLoS Computational Biology 10(11):e1003915.",
+      "key_terms": ["inferior temporal cortex", "ventral stream", "HMAX", "convolutional neural network", "RDM", "fMRI"],
+      "category": "concepts_only",
+      "difficulty": "easy",
+      "reference_explanation": "The authors set out to test how well a wide variety of computer vision and neuroscience-inspired models could capture the way inferior temporal cortex represents visual objects. They compared 37 different models — ranging from biologically motivated ones like HMAX and VisNet to computer vision standards like SIFT and GIST, plus a deep CNN — by lining up each model's RDM against RDMs measured in human IT (with fMRI) and monkey IT (with single-unit recording) for the same set of images."
+    },
     
     {
       "id": "v009",
@@ -73,6 +145,135 @@
       "category": "recent_paper",
       "difficulty": "medium",
       "reference_explanation": "The authors built a synthetic two-region brain network as a testbed: one upstream region just passes a noisy signal forward, a downstream region accumulates that signal over time and decides which way it leaned. The point is to see whether a model can correctly figure out where the integration is happening — a too-flexible model might explain the data accurately by having the upstream region do the integration instead, which would reconstruct the activity correctly but completely mislocalize the computation."
-    }
+    },
+
+
+    {
+    "id": "v017",
+    "passage": "To assess models' neural predictivity, we used a standard linear regression methodology: for each target IT neural site, we identified a synthetic neuron composed of a linear weighting of model outputs that would best match that site on fixed sample images and then tested response predictions against actual neural site's output on novel images. Models were selected for evaluation by one of three procedures: (i) random sampling of the uniform distribution over parameter space; (ii) optimization for performance on the high-variation eight-way categorization task; and (iii) optimization directly for IT neural predictivity. In each case, we observed significant variation in both performance and IT predictivity across the parameter range.",
+    "source": "Yamins et al. (2014). Performance-optimized hierarchical models predict neural responses in higher visual cortex. PNAS 111(23):8619-8624.",
+    "key_terms": ["neural predictivity", "linear regression", "synthetic neuron", "IT cortex", "explained variance"],
+    "category": "both",
+    "difficulty": "medium",
+    "reference_explanation": "To check how well a model could predict IT activity, the authors built a 'synthetic neuron' for each real IT site by fitting a linear combination of model unit outputs on a training set of images, then measured how well that synthetic neuron predicted the real one's responses on held-out images. They evaluated three different ways of selecting models from the architecture parameter space — random sampling, optimization for categorization performance, and direct optimization for matching IT — and found big variation in both performance and neural predictivity across all three regimes."
+  },
+  {
+    "id": "v018",
+    "passage": "The representation dissimilarity matrix (RDM) is a convenient tool comparing two representations on a common stimulus set in a task-independent manner. Each entry in the RDM corresponds to one stimulus pair, with high/low values indicating that the population as a whole treats the pair stimuli as very different/similar. Taken over the whole stimulus set, the RDM characterizes the layout of the images in the high-dimensional neural population space. When images are ordered by category, the RDM for the measured IT neural population exhibits clear block-diagonal structure—associated with IT's exceptionally high categorization performance—as well as off-diagonal structure that characterizes the IT neural representation more finely than any single performance metric.",
+    "source": "Yamins et al. (2014). Performance-optimized hierarchical models predict neural responses in higher visual cortex. PNAS 111(23):8619-8624.",
+    "key_terms": ["representational dissimilarity matrix", "neural population", "categorization", "IT cortex", "population code"],
+    "category": "both",
+    "difficulty": "easy",
+    "reference_explanation": "The RDM is a way to compare two representations of the same stimulus set without committing to any particular task or readout: each entry just says how differently the two systems treat a given pair of stimuli. When you sort the stimuli by category, the IT RDM lights up in block-diagonal patterns because IT separates categories cleanly, but it also has finer off-diagonal structure that captures more about the representation than any one categorization score could."
+  },
+  {
+    "id": "v019",
+    "passage": "We trained a deep neural network to path integrate within a square arena (2.2 m × 2.2 m), using simulated trajectories modelled on those of foraging rodents. As expected, the network was able to path integrate accurately in this setting involving foraging behaviour (mean error after 15 s trajectory was 16 cm versus 91 cm for an untrained network). To ascertain how robust these representations were, we retrained the network 100 times, in each instance finding similar proportions of grid-like units (mean 23%, s.d. 2.8%, units with significant gridness scores) and other spatially modulated units. Conversely, grid-like representations did not emerge in networks without regularization (for example, dropout). Therefore, the use of regularization, including dropout (which has been viewed to be a parallel of noise in neural systems), was critical to the emergence of entorhinal-like representations.",
+    "source": "Banino et al. (2018). Vector-based navigation using grid-like representations in artificial agents. Nature 557:429-433.",
+    "key_terms": ["path integration", "grid cells", "dropout", "regularization", "entorhinal cortex", "neural representations"],
+    "category": "both",
+    "difficulty": "medium",
+    "reference_explanation": "After training, the network could keep track of its location with about 16 cm of error over 15 seconds — vastly better than an untrained baseline. The result was reliable across 100 retrainings with different random seeds, always producing roughly 23% grid-like units. Crucially, removing dropout killed the grid-like structure entirely, suggesting that the noise injected by dropout during training is doing something analogous to whatever biological noise contributes to the formation of entorhinal representations in real brains."
+  },
+  {
+    "id": "v020",
+    "passage": "Theoretically, the advantage of decomposing spatial location into a multi-scale periodic code, as provided by grid cells, is that the relative positions of two points can be retrieved by examining the difference in the code at the level of each scale—combining the modulus remainders to return the true vector. However, despite the obvious utility of such a framework, experimental evidence for the direct involvement of grid representations in goal-directed navigation is still lacking. To develop an agent with the potential for vector-based navigation, we incorporated the 'grid network' described above into a larger architecture that was trained using deep reinforcement learning. As before, the grid network was trained using supervised learning but, to better approximate the information available to navigating mammals, it now received velocity signals perturbed with random noise as well as visual input.",
+    "source": "Banino et al. (2018). Vector-based navigation using grid-like representations in artificial agents. Nature 557:429-433.",
+    "key_terms": ["vector-based navigation", "grid cells", "deep reinforcement learning", "supervised learning", "multi-scale code"],
+    "category": "both",
+    "difficulty": "medium",
+    "reference_explanation": "Grid cells theoretically support a powerful navigation trick: because they represent space at multiple periodic scales, you can recover the vector between two points by comparing the codes scale-by-scale, but until this paper there was no direct experimental evidence that brains actually use grids this way. The authors built an artificial test of this hypothesis by embedding their pretrained grid network inside a larger reinforcement-learning agent, this time also feeding it noisy velocity signals and visual input to better mimic what a real animal has to work with."
+  },
+  {
+    "id": "v021",
+    "passage": "ANNs trained on tasks similar to those solved by animals. Third, many modeling studies have demonstrated that the apparent biological implausibility of end-to-end learning rules, such as learning algorithms that can mimic the power of the canonical backpropagation-of-error algorithm (backprop), is overstated. Relatively simple assumptions about cellular and subcellular electrophysiology, inhibitory microcircuits, patterns of spike timing, short-term plasticity and feedback connections can enable biological systems to approximate backprop-like learning in deep ANNs. Hence, ANN-based models of the brain may not be as unrealistic as previously thought, and simultaneously, they appear to explain a lot of neurobiological data.",
+    "source": "Richards et al. (2019). A deep learning framework for neuroscience. Nature Neuroscience 22:1761-1770.",
+    "key_terms": ["backpropagation", "biological plausibility", "deep learning", "synaptic plasticity", "feedback connections"],
+    "category": "both",
+    "difficulty": "medium",
+    "reference_explanation": "The standard objection to using deep networks as brain models is that backpropagation isn't biologically realistic, but recent work suggests this concern has been overstated. A handful of fairly modest assumptions — about how single neurons work, how inhibitory microcircuits behave, how spikes are timed, and how feedback connections function — turn out to be enough for biological circuits to approximate something very much like backprop. So deep network models are probably less biologically wild than people thought, while also doing a good job explaining real neural data."
+  },
+  {
+    "id": "v022",
+    "passage": "Deep learning combines human design with automatic learning to solve a task. The design comprises not the computations (i.e., the specific input–output functions of the ANNs), but three components: (i) objective functions, (ii) learning rules and (iii) architectures. 'Objective functions' describe the goals of the learning system. They are functions of the synaptic weights of a neural network and the data it receives, but they can be defined without making reference to a specific task or dataset. 'Learning rules' describe how the parameters in a model are updated. In ANNs, these rules are generally used to improve on the objective function. Finally, 'architectures' describe how the units in an ANN are arranged and what operations they can perform.",
+    "source": "Richards et al. (2019). A deep learning framework for neuroscience. Nature Neuroscience 22:1761-1770.",
+    "key_terms": ["objective function", "learning rules", "architecture", "deep learning", "synaptic weights"],
+    "category": "both",
+    "difficulty": "easy",
+    "reference_explanation": "In a deep learning system, humans don't program the actual computations the network does — those emerge from training. Instead, designers specify three things: an objective function that says what counts as good performance, a learning rule that says how to update the weights, and an architecture that says how units are arranged and what operations they can perform. The authors argue this same triple should organize how systems neuroscience thinks about brain circuits."
+  },
+  {
+    "id": "v023",
+    "passage": "Several models using Gabor filters and other low-level features explain human early visual cortex. We could not distinguish early visual areas V1, V2, and V3, because stimuli were presented foveally in the human fMRI experiment (2.9° visual angle in diameter, centered on fixation). Instead we defined an ROI for early visual cortex (EVC), which covered the foveal confluence of these retinotopic representations. Several models using Gabor filters (SIFT, gist, PHOG, HMAX, ConvNet) and other features (Geometric blur, local self-similarity descriptor, global self-similarity descriptor, silhouette image) explained the early visual RDM estimated from fMRI. These models not only explained significant dissimilarity variance, but reached the noise ceiling, indicating that they explain the EVC representation to the extent that the noise in our data enables us to assess this.",
+    "source": "Khaligh-Razavi & Kriegeskorte (2014). Deep Supervised, but Not Unsupervised, Models May Explain IT Cortical Representation. PLoS Computational Biology 10(11):e1003915.",
+    "key_terms": ["fMRI", "early visual cortex", "Gabor filters", "HMAX", "noise ceiling", "RDM"],
+    "category": "both",
+    "difficulty": "medium",
+    "reference_explanation": "Because the fMRI stimuli were presented at the center of the visual field, the authors couldn't separately localize V1, V2, and V3, so they pooled them into a single early visual cortex region. Several models built around Gabor-like filters — SIFT, gist, HMAX, the convolutional network, and others — predicted the dissimilarity structure in this region well enough to actually hit the noise ceiling, meaning they explained as much of the data as the noise level allows any model to explain."
+  },
+  {
+    "id": "v024",
+    "passage": "We find strong similarities between the representational geometries of a deep supervised model and IT. This is important because it suggests that deep supervised models capture something essential about the IT representation. However, the fact that our IT-geometry-supervised deep representation fully explains our IT data should not be overinterpreted. First, these models operate in a feedforward fashion, and do not capture the recurrent dynamics in the visual hierarchy. This component of visual processing might be sufficient for 'core object recognition', i.e. rapid recognition at a glance. However, vision provides us with a much more complex appreciation of our surroundings and supports a wide array of tasks. Biological vision involves recurrent processing as well as active exploration of the scene with attentional shifts and eye movements.",
+    "source": "Khaligh-Razavi & Kriegeskorte (2014). Deep Supervised, but Not Unsupervised, Models May Explain IT Cortical Representation. PLoS Computational Biology 10(11):e1003915.",
+    "key_terms": ["deep learning", "IT cortex", "representational geometry", "feedforward", "recurrent processing", "attention"],
+    "category": "both",
+    "difficulty": "medium",
+    "reference_explanation": "The deep supervised network really does capture something important about how IT represents objects, since its representational geometry lines up well with the brain data. But the authors are careful not to oversell this: the model is purely feedforward, so it can only really speak to the fast, glance-level component of object recognition. Real biological vision also involves recurrent processing within the visual hierarchy, plus active behaviors like attention shifts and eye movements that this kind of model doesn't address at all."
+  },
+    
+  {
+    "id": "v025",
+    "passage": "At initialization, artificial neural networks (ANNs) are equivalent to Gaussian processes in the infinite-width limit, thus connecting them to kernel methods. We prove that the evolution of an ANN during training can also be described by a kernel: during gradient descent on the parameters of an ANN, the network function fθ (which maps input vectors to output vectors) follows the kernel gradient of the functional cost (which is convex, in contrast to the parameter cost) w.r.t. a new kernel: the Neural Tangent Kernel (NTK). This kernel is central to describe the generalization features of ANNs. While the NTK is random at initialization and varies during training, in the infinite-width limit it converges to an explicit limiting kernel and it stays constant during training. This makes it possible to study the training of ANNs in function space instead of parameter space.",
+    "source": "Jacot, Gabriel, Hongler (2018). Neural Tangent Kernel: Convergence and Generalization in Neural Networks. NeurIPS 2018. arXiv:1806.07572",
+    "key_terms": ["Neural Tangent Kernel", "infinite-width limit", "Gaussian process", "kernel gradient", "function space"],
+    "category": "neither",
+    "difficulty": "hard",
+    "reference_explanation": "An infinitely wide neural network at initialization behaves like a Gaussian process, which already links it to kernel methods. The authors show that this kernel connection extends to training itself: gradient descent on the network's parameters is equivalent to a kind of gradient descent in function space against a particular kernel called the Neural Tangent Kernel. In the infinite-width limit this kernel stops being random and stops changing during training, which means you can analyze what the network is learning by studying that fixed kernel rather than tracking the parameters."
+  },
+  {
+    "id": "v026",
+    "passage": "For a least-squares regression loss, the network function fθ follows a linear differential equation in the infinite-width limit, and the eigenfunctions of the Jacobian are the kernel principal components of the input data. This shows a direct connection to kernel methods and motivates the use of early stopping to reduce overfitting in the training of ANNs. The convergence is faster along the eigenspaces corresponding to larger eigenvalues λi. Early stopping hence focuses the convergence on the most relevant kernel principal components, while avoiding to fit the ones in eigenspaces with lower eigenvalues (such directions are typically the 'noisier' ones: for instance, in the case of the RBF kernel, lower eigenvalues correspond to high frequency functions).",
+    "source": "Jacot, Gabriel, Hongler (2018). Neural Tangent Kernel: Convergence and Generalization in Neural Networks. arXiv:1806.07572",
+    "key_terms": ["least-squares regression", "kernel principal components", "eigenfunctions", "early stopping", "RBF kernel"],
+    "category": "neither",
+    "difficulty": "hard",
+    "reference_explanation": "When the loss is squared error, the infinite-width network's output evolves according to a linear differential equation whose natural axes are the kernel principal components of the training data. Convergence happens fastest along the directions with the largest eigenvalues and slowest along the smallest, so stopping training early naturally fits the dominant components first while leaving the noisy low-eigenvalue directions underfit — giving a principled reason why early stopping helps generalization."
+  },
+  {
+    "id": "v027",
+    "passage": "Modern practice for training classification deepnets involves a Terminal Phase of Training (TPT), which begins at the epoch where training error first vanishes; During TPT, the training error stays effectively zero while training loss is pushed towards zero. Direct measurements of TPT, for three prototypical deepnet architectures and across seven canonical classification datasets, expose a pervasive inductive bias we call Neural Collapse, involving four deeply interconnected phenomena: (NC1) Cross-example within-class variability of last-layer training activations collapses to zero, as the individual activations themselves collapse to their class-means; (NC2) The class-means collapse to the vertices of a Simplex Equiangular Tight Frame (ETF); (NC3) Up to rescaling, the last-layer classifiers collapse to the class-means, or in other words to the Simplex ETF, i.e. to a self-dual configuration; (NC4) For a given activation, the classifier's decision collapses to simply choosing whichever class has the closest train class-mean, i.e. the Nearest Class-Center (NCC) decision rule.",
+    "source": "Papyan, Han, Donoho (2020). Prevalence of Neural Collapse during the terminal phase of deep learning training. PNAS. arXiv:2008.08186",
+    "key_terms": ["Terminal Phase of Training", "Neural Collapse", "Simplex Equiangular Tight Frame", "self-duality", "Nearest Class-Center"],
+    "category": "neither",
+    "difficulty": "medium",
+    "reference_explanation": "After a deep classifier reaches zero training error, practitioners typically keep training to push the loss further toward zero — this continued-training period is the Terminal Phase of Training. The authors document that during this phase, four geometric phenomena consistently emerge across many architectures and datasets: the last-layer features for each class collapse onto their class mean, the class means arrange themselves as the vertices of a maximally symmetric geometric object called a Simplex Equiangular Tight Frame, the linear classifier weights converge to match those same class means, and the resulting decision rule simplifies to picking whichever class mean is nearest."
+  },
+  {
+    "id": "v028",
+    "passage": "A standard Simplex ETF is a collection of points in R^C specified by the columns of M⋆ = sqrt(C/(C−1)) (I − (1/C) 11⊤), where I is the identity matrix, and 1C is the ones vector. In this paper, we allow other poses, as well as rescaling, so the general Simplex ETF consists of the points specified by the columns of M = αUM⋆, where α is a scale factor, and U is a partial orthogonal matrix. (NC2) implies that the different feature means are 'equally spaced' around the sphere in their constructed feature space; (NC3) says the same for the linear classifiers in their own dual space; and moreover, that the linear classifiers are 'the same as' the class means, up to possible rescaling.",
+    "source": "Papyan, Han, Donoho (2020). Prevalence of Neural Collapse during the terminal phase of deep learning training. arXiv:2008.08186",
+    "key_terms": ["Simplex ETF", "partial orthogonal matrix", "equiangular", "feature means", "dual space"],
+    "category": "neither",
+    "difficulty": "hard",
+    "reference_explanation": "A Simplex Equiangular Tight Frame is a specific highly symmetric arrangement of points: in its standard form it's given by a particular formula involving the identity matrix and the all-ones vector, and the paper allows any rotated and rescaled version of that to count as well. Geometrically, the configuration places points so that they're equally spaced around a sphere with identical pairwise angles. The claim of Neural Collapse is that both the class-mean features and the classifier weights independently converge to such a configuration, and moreover that the two configurations end up being the same one up to scale."
+  },
+  {
+    "id": "v029",
+    "passage": "We develop a theory of the linear separability of general, finite dimensional manifolds. Using replica theory, we derive mean field equations for the capacity of linear separation of finite dimensional manifolds and for the statistical properties of the optimal separating weight vector. The mean-field solution is given in the form of self consistent Karush-Kuhn-Tucker (KKT) conditions involving the manifold anchor point. The anchor point is a representative support vector for the manifold. The position of the anchor point on a manifold changes as the orientations of the other manifolds are varied, and the ensuing statistics of the distribution of anchor points play a key role in our theory. The optimal separating plane intersects a fraction of the manifolds (the supporting manifolds). Our theory categorizes the dimension of the span of the intersecting sets (e.g., points, edges, faces, or full manifolds) in relation to the position of the anchor points in the manifolds' convex hulls.",
+    "source": "Chung, Lee, Sompolinsky (2018). Classification and Geometry of General Perceptual Manifolds. Physical Review X. arXiv:1710.06487",
+    "key_terms": ["replica theory", "mean field", "Karush-Kuhn-Tucker conditions", "anchor point", "manifold capacity", "convex hull"],
+    "category": "neither",
+    "difficulty": "hard",
+    "reference_explanation": "The authors build a statistical-mechanics theory for how many low-dimensional manifolds (rather than isolated points) a linear classifier can separate. Using the replica method from physics, they derive a self-consistent set of equations characterizing the maximum-margin solution, expressed as KKT conditions involving a special point on each manifold called the anchor point. This anchor point is the manifold's effective stand-in for support-vector calculations, and crucially its location depends on how all the other manifolds happen to be oriented, so its statistics across many configurations end up determining the overall classification capacity."
+  },
+  {
+    "id": "v030",
+    "passage": "The capacity equation motivates defining geometrical measures of the manifolds, which we call manifold anchor geometry. Manifold anchor geometry is based on the statistics of the anchor points s̃(t,t0) induced by the Gaussian random vector (t,t0) which are relevant to the capacity. These statistics are sufficient for determining the classification properties and supporting structures associated with the maximum margin solution. We accordingly define the manifold anchor radius and dimension as: Manifold anchor radius, denoted RM, is defined by the mean squared length of s̃(t,t0). Manifold anchor dimension, DM, is given by the expected squared projection of t onto the unit vector in the direction of s̃. The anchor dimension measures the angular spread between t and the corresponding anchor point s̃ in D dimensions.",
+    "source": "Chung, Lee, Sompolinsky (2018). Classification and Geometry of General Perceptual Manifolds. arXiv:1710.06487",
+    "key_terms": ["manifold anchor geometry", "manifold anchor radius", "manifold anchor dimension", "Gaussian random vector", "maximum margin"],
+    "category": "neither",
+    "difficulty": "medium",
+    "reference_explanation": "Out of their capacity theory, the authors extract two new geometric quantities that summarize what makes a manifold easy or hard to classify: an anchor radius and an anchor dimension. Both are defined as averages over the statistics of the anchor point — the radius is essentially how big the anchor point's typical displacement is, and the dimension measures how spread out the angle is between a random Gaussian direction and the anchor point it induces. Together these two numbers are claimed to be sufficient for predicting linear classification capacity."
+  }
   ]
 }

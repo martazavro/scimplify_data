@@ -1,0 +1,212 @@
+[
+  {
+    "id": "c001",
+    "concept": "Representational Similarity Analysis (RSA)",
+    "definition": "A method for comparing representational geometry across systems by correlating pairwise distance matrices. You build a matrix of how similar/different all pairs of stimuli are in one system (e.g. a brain region), do the same for another system (e.g. a neural network layer), then correlate the two matrices.",
+    "context": "Used heavily in NeuroAI to test whether artificial networks learn representations that resemble neural ones. Introduced by Kriegeskorte et al. (2008).",
+    "typical_usage": "methods sections comparing DNN layers to fMRI or electrophysiology data"
+  },
+  {
+    "id": "c002",
+    "concept": "Voxel-wise encoding model",
+    "definition": "A model that predicts the activity of individual brain voxels (small 3D cubes of brain tissue measured by fMRI) from stimulus features. You fit a separate regression for each voxel.",
+    "context": "Common in vision neuroscience. The idea is to see which features of an image (or which layer of a neural network) best predict activity at each location in the brain.",
+    "typical_usage": "fMRI studies mapping stimulus features to brain activity patterns"
+  },
+  {
+    "id": "c003",
+    "concept": "Predictive coding",
+    "definition": "A theory that the brain constantly generates predictions about incoming sensory input, and only passes along the prediction errors (the difference between what was expected and what actually happened). Higher areas send predictions down, lower areas send errors up.",
+    "context": "Major theoretical framework in computational neuroscience. Has connections to variational inference and the free energy principle (Karl Friston's work).",
+    "typical_usage": "theoretical neuroscience papers, models of perception and learning"
+  },
+  {
+    "id": "c004",
+    "concept": "Backpropagation",
+    "definition": "The algorithm used to train neural networks by computing gradients of the loss function with respect to each weight, propagating error signals backward through the network layers using the chain rule.",
+    "context": "The standard training method for deep learning. A long-standing debate in neuroAI is whether the brain does something like backprop or uses a fundamentally different learning rule.",
+    "typical_usage": "any deep learning paper; neuroAI discussions of biological plausibility"
+  },
+  {
+    "id": "c005",
+    "concept": "Biological plausibility",
+    "definition": "The degree to which a computational model or algorithm could realistically be implemented by biological neurons. Criteria usually include: local learning rules, no weight transport, realistic connectivity.",
+    "context": "A key concern in NeuroAI. Standard backprop violates several biological constraints, motivating alternatives like Hebbian learning, equilibrium propagation, predictive coding-based learning.",
+    "typical_usage": "papers proposing brain-like learning algorithms"
+  },
+  {
+    "id": "c006",
+    "concept": "Hebbian learning",
+    "definition": "A learning rule based on the idea that 'neurons that fire together wire together.' If two neurons are active at the same time, the connection between them gets stronger. Formalized as a weight update proportional to the product of pre- and post-synaptic activity.",
+    "context": "One of the oldest ideas in computational neuroscience (Hebb, 1949). It's local and biologically plausible but limited on its own — often combined with other rules.",
+    "typical_usage": "unsupervised learning models, plasticity research, biologically plausible alternatives to backprop"
+  },
+  {
+    "id": "c007",
+    "concept": "Centered Kernel Alignment (CKA)",
+    "definition": "A similarity measure for comparing representations between neural networks (or between a network and brain data). It measures how similar two representation spaces are, accounting for different dimensionalities and invariant to orthogonal transformations and isotropic scaling.",
+    "context": "Often used alongside RSA as a more robust way to compare representations. Introduced by Kornblith et al. (2019).",
+    "typical_usage": "comparison studies between DNN layers and neural data"
+  },
+  {
+    "id": "c008",
+    "concept": "Ventral visual stream",
+    "definition": "The pathway in the brain that runs from primary visual cortex (V1) through V2, V4, to inferotemporal cortex (IT). Responsible for object recognition — the 'what' pathway. Processes increasingly complex visual features along its hierarchy.",
+    "context": "The ventral stream's hierarchical structure is a major inspiration for deep convolutional networks. The analogy between CNN layers and ventral stream areas is one of the foundational findings in NeuroAI.",
+    "typical_usage": "vision neuroscience, CNN-brain comparisons"
+  },
+  {
+    "id": "c009",
+    "concept": "Convolutional Neural Network (CNN)",
+    "definition": "A type of neural network that uses convolutional filters (small weight matrices slid across the input) to detect local patterns. Typically stacked in layers that detect increasingly complex features — edges, textures, parts, objects.",
+    "context": "The architecture most compared to the ventral visual stream. Early layers tend to match early visual areas (V1), later layers match higher areas (IT).",
+    "typical_usage": "image classification, NeuroAI studies comparing artificial and biological vision"
+  },
+  {
+    "id": "c010",
+    "concept": "Transformer (architecture)",
+    "definition": "A neural network architecture based on self-attention mechanisms rather than recurrence or convolution. Each element in a sequence attends to every other element, weighted by learned attention scores. Originally developed for NLP (Vaswani et al., 2017).",
+    "context": "Increasingly used in NeuroAI — vision transformers are now being compared to visual cortex, and attention mechanisms have parallels to neural attention.",
+    "typical_usage": "NLP, vision, and increasingly neuroscience modeling papers"
+  },
+  {
+    "id": "c011",
+    "concept": "Self-supervised learning",
+    "definition": "Training a model without explicit labels by creating a supervisory signal from the data itself. Examples: predicting masked parts of an image, predicting the next word, or learning to match different augmented views of the same image.",
+    "context": "Big deal in NeuroAI because the brain mostly learns without explicit labels too. Self-supervised models often produce representations that better match brain data than supervised ones.",
+    "typical_usage": "representation learning papers, brain-model comparison studies"
+  },
+  {
+    "id": "c012",
+    "concept": "Contrastive learning",
+    "definition": "A type of self-supervised learning where the model learns by pulling together representations of similar items (positive pairs) and pushing apart representations of dissimilar items (negative pairs). Loss functions like InfoNCE or NT-Xent are typical.",
+    "context": "Models trained with contrastive objectives (e.g. SimCLR, BYOL) have been shown to learn representations that align well with neural data from visual cortex.",
+    "typical_usage": "self-supervised learning papers, vision representation learning"
+  },
+  {
+    "id": "c013",
+    "concept": "Bayesian inference",
+    "definition": "A framework for updating beliefs in light of new evidence using Bayes' rule: posterior = (likelihood * prior) / evidence. You start with a prior belief, observe data, and compute an updated (posterior) belief.",
+    "context": "The 'Bayesian brain' hypothesis suggests that perception and cognition involve approximate Bayesian inference — the brain combines prior expectations with sensory evidence.",
+    "typical_usage": "perception models, decision-making, computational psychiatry"
+  },
+  {
+    "id": "c014",
+    "concept": "Free energy principle",
+    "definition": "Karl Friston's theory that biological systems minimize variational free energy — a quantity that bounds surprise. In practice, this means organisms try to minimize the difference between their internal model's predictions and actual sensory input.",
+    "context": "Controversial but influential. Unifies predictive coding, active inference, and Bayesian brain ideas under one framework. You either love it or find it unfalsifiable.",
+    "typical_usage": "theoretical neuroscience, active inference papers"
+  },
+  {
+    "id": "c015",
+    "concept": "Reinforcement learning (RL)",
+    "definition": "Learning from rewards and punishments. An agent interacts with an environment, receives reward signals, and learns a policy (mapping from states to actions) that maximizes expected cumulative reward.",
+    "context": "One of the most successful bridges between AI and neuroscience. The dopamine system in the brain appears to implement something like temporal difference learning (Schultz et al., 1997).",
+    "typical_usage": "decision-making, dopamine studies, game-playing AI"
+  },
+  {
+    "id": "c016",
+    "concept": "Temporal difference (TD) learning",
+    "definition": "An RL algorithm that updates value estimates based on the difference between consecutive predictions rather than waiting for the final outcome. The TD error signal is: reward + discounted next value - current value.",
+    "context": "The famous finding: dopamine neurons in the midbrain fire in a pattern that matches TD prediction errors. This was a landmark result linking AI algorithms to neurobiology.",
+    "typical_usage": "reward learning models, dopamine research"
+  },
+  {
+    "id": "c017",
+    "concept": "Reward prediction error",
+    "definition": "The difference between the reward an agent expected and the reward it actually received. Positive RPE = better than expected, negative RPE = worse than expected.",
+    "context": "Encoded by dopamine neurons. When something is better than expected, dopamine neurons fire more; when worse, they fire less. This is one of the most well-established computational neuroscience findings.",
+    "typical_usage": "fMRI reward studies, computational models of learning"
+  },
+  {
+    "id": "c018",
+    "concept": "Place cells",
+    "definition": "Neurons in the hippocampus that fire when an animal is in a specific location in its environment. Each place cell has a 'place field' — a region of space where it's most active.",
+    "context": "Discovered by O'Keefe (Nobel Prize 2014). Now studied in NeuroAI in the context of spatial representation learning — some deep RL agents develop place-cell-like representations.",
+    "typical_usage": "hippocampal research, spatial navigation, memory"
+  },
+  {
+    "id": "c019",
+    "concept": "Grid cells",
+    "definition": "Neurons in entorhinal cortex that fire in a regular hexagonal grid pattern as an animal moves through space. They provide a metric for spatial navigation — like an internal coordinate system.",
+    "context": "Discovered by Moser & Moser (Nobel Prize 2014). NeuroAI finding: DeepMind showed that neural networks trained on path integration tasks spontaneously develop grid-like representations (Banino et al., 2018).",
+    "typical_usage": "spatial cognition, navigation models, hippocampal-entorhinal research"
+  },
+  {
+    "id": "c020",
+    "concept": "Attention (neural mechanism)",
+    "definition": "The brain's mechanism for selectively enhancing processing of relevant information while suppressing irrelevant information. Can be top-down (goal-directed) or bottom-up (stimulus-driven). Modulates neural gain and synchrony.",
+    "context": "Parallels to attention in transformers are debated — the mechanisms are quite different (neural attention modulates gain; transformer attention computes weighted averages), but the functional goal is similar.",
+    "typical_usage": "cognitive neuroscience, perception, transformer architecture papers drawing neuro parallels"
+  },
+  {
+    "id": "c021",
+    "concept": "Spike-timing-dependent plasticity (STDP)",
+    "definition": "A biological learning rule where the change in synaptic strength depends on the precise timing of pre- and post-synaptic spikes. If the pre-synaptic neuron fires just before the post-synaptic one, the synapse strengthens (LTP). Reverse order weakens it (LTD).",
+    "context": "A refinement of Hebbian learning that incorporates timing. Used in spiking neural network models as a biologically plausible learning rule.",
+    "typical_usage": "spiking neural network papers, biological learning rule research"
+  },
+  {
+    "id": "c022",
+    "concept": "Spiking neural network (SNN)",
+    "definition": "Neural networks where neurons communicate via discrete spikes (binary events in time) rather than continuous activation values. More biologically realistic than standard ANNs. Neurons integrate input over time and fire when they reach a threshold.",
+    "context": "Growing interest in NeuroAI as a more biologically plausible alternative to standard deep learning. Also of interest for neuromorphic computing (energy-efficient hardware).",
+    "typical_usage": "neuromorphic computing, biologically plausible learning"
+  },
+  {
+    "id": "c023",
+    "concept": "Transfer learning",
+    "definition": "Using a model trained on one task (or dataset) as a starting point for a different but related task. Instead of training from scratch, you fine-tune pre-trained weights.",
+    "context": "Relevant to NeuroAI because the brain also transfers knowledge across tasks. A visual system trained on natural images doesn't start from scratch when learning to read.",
+    "typical_usage": "practical deep learning, few-shot learning, brain-AI comparisons of generalization"
+  },
+  {
+    "id": "c024",
+    "concept": "Recurrent neural network (RNN)",
+    "definition": "A neural network with connections that form cycles, allowing information to persist over time. At each time step, the network's state depends on both the current input and its previous state.",
+    "context": "Used in NeuroAI to model temporal processing in the brain. RNNs trained on cognitive tasks sometimes develop dynamics that resemble neural population dynamics recorded in animals.",
+    "typical_usage": "sequence modeling, motor control, working memory models"
+  },
+  {
+    "id": "c025",
+    "concept": "Neural population dynamics",
+    "definition": "The idea that brain computation is best understood not by looking at individual neurons but by studying how populations of neurons evolve together over time in a high-dimensional state space. Analyzed with dimensionality reduction (PCA, GPFA, etc.).",
+    "context": "A major framework in modern systems neuroscience. RNNs trained on cognitive tasks are often analyzed using the same dynamical systems tools applied to neural data.",
+    "typical_usage": "motor cortex, prefrontal cortex, decision-making studies"
+  },
+  {
+    "id": "c026",
+    "concept": "Dimensionality reduction",
+    "definition": "Techniques for projecting high-dimensional data into fewer dimensions while preserving important structure. Common methods: PCA, t-SNE, UMAP. In neuroscience, used to visualize and analyze activity patterns from many simultaneously recorded neurons.",
+    "context": "Essential tool in both neuroscience and ML. When comparing neural network representations to brain data, you often project both into a common lower-dimensional space.",
+    "typical_usage": "neural data analysis, representation visualization"
+  },
+  {
+    "id": "c027",
+    "concept": "Disentangled representations",
+    "definition": "Representations where different factors of variation in the data are captured by separate, independent dimensions. For example, an object's shape, color, and position would each be encoded by different units or dimensions.",
+    "context": "Studied in NeuroAI because the brain appears to separate different features into distinct neural populations. VAEs and other generative models are often tested for disentanglement.",
+    "typical_usage": "generative models, representation learning, visual cortex modeling"
+  },
+  {
+    "id": "c028",
+    "concept": "Ablation study",
+    "definition": "Systematically removing components of a system (layers, modules, training objectives) to see which parts are necessary for performance. Like lesion studies in neuroscience but for neural networks.",
+    "context": "Borrowed from neuroscience where ablation/lesion studies were a classic method. Now a standard technique in ML for understanding model components.",
+    "typical_usage": "model analysis sections, architecture comparisons"
+  },
+  {
+    "id": "c029",
+    "concept": "Few-shot learning",
+    "definition": "The ability to learn a new concept or task from very few examples (often 1-5). Contrasted with standard deep learning which typically requires thousands or millions of examples.",
+    "context": "Humans and animals are incredible few-shot learners. This gap between biological and artificial intelligence motivates a lot of NeuroAI work on meta-learning and memory-augmented networks.",
+    "typical_usage": "meta-learning, cognitive science comparisons, benchmarking"
+  },
+  {
+    "id": "c030",
+    "concept": "Normative model",
+    "definition": "A model that derives what a system *should* do to be optimal, rather than describing what it actually does. Example: 'what is the optimal strategy for this foraging task?' Then you compare the optimal solution to actual animal/human behavior.",
+    "context": "Important in computational neuroscience. Bayesian models are often normative — they say what the brain should compute if it's being optimal. Deviations from the normative model are informative.",
+    "typical_usage": "decision-making, perception, computational cognitive science"
+  }
+]

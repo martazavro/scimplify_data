@@ -1,0 +1,78 @@
+{
+  "_README": "Every 'passage' and 'reference_explanation' field below is a PLACEHOLDER. You MUST replace each TODO entry with a real passage from a real paper before running experiments. The 'key_terms', 'category', and 'difficulty' fields are pre-populated to give you a balanced 30-item set, but feel free to adjust them as you find real passages. Categories: concepts_only=8, recent_paper=8, both=8, neither=6. Total=30.",
+  "items": [
+    
+    {
+      "id": "v009",
+      "passage": "Current approaches to reconstructing visual stimuli from the brain typically implement a two-stage pipeline: (1) brain activity is first mapped to intermediate representations in latent space derived from large foundation models, such as CLIP and DINO; (2) these intermediate representations are then used to condition a visual generative model for stimulus reconstruction. Mapping brain data into an intermediate representation space leverages rich priors in embedding spaces to improve reconstruction quality and has proved highly effective for reconstruction. However, the use of this intermediate representation can introduce an information bottleneck with successful reconstruction of perceived stimuli depending on the alignment between neural representations and the embedding space.",
+      "source": "Feng, Adeli, Guo, Cheng, Hwang, Kriegeskorte (2025). Towards Interpretable Visual Decoding with Attention to Brain Representations. NeurIPS 2025 Workshop. arXiv:2509.23566",
+      "key_terms": ["fMRI", "CLIP", "DINO", "latent diffusion", "information bottleneck", "neural representations"],
+      "category": "recent_paper",
+      "difficulty": "medium",
+      "reference_explanation": "Most recent brain-to-image reconstruction systems work in two steps: first they translate fMRI signals into the embedding space of a large pretrained model like CLIP, then they feed those embeddings into an image generator. This two-step approach works well because the embedding spaces already contain useful structure, but it has a downside: the intermediate space can act as a bottleneck, and reconstruction quality depends on how well brain activity actually maps onto that particular embedding space."
+    },
+    {
+      "id": "v010",
+      "passage": "Our brain decoding framework, NeuroAdapter, is built on the IP-Adapter framework. We conditioned a pre-trained Stable Diffusion model on fMRI-derived features via cross attention to reconstruct perceived visual stimuli. We introduce a cross-attention module that enables U-Net in SD to attend to the fMRI embeddings directly. To ensure that fMRI embeddings were the only conditioning input, the text encoder in SD received an empty input during both training and inference. During training, only the parcel-wise linear projection and cross-attention modules were updated, with the SD parameters kept frozen.",
+      "source": "Feng et al. (2025). Towards Interpretable Visual Decoding with Attention to Brain Representations. arXiv:2509.23566",
+      "key_terms": ["cross attention", "Stable Diffusion", "U-Net", "fMRI embeddings", "frozen parameters"],
+      "category": "recent_paper",
+      "difficulty": "medium",
+      "reference_explanation": "NeuroAdapter takes a pretrained Stable Diffusion image generator and adds a new cross-attention layer that lets the diffusion model directly look at processed fMRI signals while generating an image. To make sure the only signal driving the image is the brain data, the authors zero out the text input that Stable Diffusion would normally use, freeze the original Stable Diffusion weights, and only train the new cross-attention layer plus a small linear projection from fMRI to embeddings."
+    },
+    {
+      "id": "v011",
+      "passage": "This position paper argues that the standard definition of the Turing Test is incomplete for NeuroAI, and proposes a stronger framework called the NeuroAI Turing Test, a benchmark that extends beyond behavior alone and additionally requires models to produce internal neural representations that are empirically indistinguishable from those of a brain up to measured individual variability, i.e. the differences between a computational model and the brain is no more than the difference between one brain and another brain. While the brain is not necessarily the ceiling of intelligence, it remains the only universally agreed-upon example, making it a natural reference point for evaluating computational models.",
+      "source": "Feather, Khosla, Murty, Nayebi (2025). Brain-Model Evaluations Need the NeuroAI Turing Test. arXiv:2502.16238",
+      "key_terms": ["Turing Test", "internal representations", "representational convergence", "individual variability"],
+      "category": "recent_paper",
+      "difficulty": "hard",
+      "reference_explanation": "The classical Turing Test only checks whether a machine behaves like a human, but two systems can produce the same outputs through completely different internal computations. The authors argue NeuroAI needs a stricter test: a model should both behave like a brain AND have internal representations that look as similar to brain activity as one brain looks to another. The threshold is brain-to-brain variability — if your model differs from real brains by more than two real brains differ from each other, it isn't brain-like enough."
+    },
+    {
+      "id": "v012",
+      "passage": "Let's consider a model that passes the behavioral Turing Test. Would this model also pass a representational level test for brains? Some researchers have argued that several high-capacity neural networks are converging to universal platonic representations. This idea is closely related to notions of efficient coding in neuroscience. But note converging to the optimal code still critically depends on strong implementational constraints. And the constraints in biology are quite different than those in artificial systems. Some work has suggested that including biological constraints in the architecture or training environment of models leads to better representational alignment. It remains an open question whether (and which) of these biological constraints critically shape the representation, such that a high-capacity system without such constraints would yield a different optimal solution.",
+      "source": "Feather et al. (2025). Brain-Model Evaluations Need the NeuroAI Turing Test. arXiv:2502.16238",
+      "key_terms": ["behavioral Turing Test", "platonic representations", "efficient coding", "biological constraints", "representational alignment"],
+      "category": "recent_paper",
+      "difficulty": "medium",
+      "reference_explanation": "Just because a neural network can mimic human behavior doesn't mean it represents information the same way the brain does. There's a popular idea that large neural networks are all converging on the same optimal way of representing information, which would be analogous to the brain's efficient coding strategies. But the constraints that shape brain representations — biological wiring, energy limits, anatomy — are very different from those shaping artificial networks, so it's still unclear whether a network without those constraints would actually arrive at brain-like representations."
+    },
+    {
+      "id": "v013",
+      "passage": "Accurately identifying inter-regional communication is challenging for at least four reasons. First, communication signals are not directly observed in multi-region recordings. Although some recorded neurons might project to other recorded regions, the identity and targets of these projection neurons are typically unknown. Second, models may need to account for inputs to the recorded brain regions from other regions that were not recorded during the experiment. Third, models should faithfully reconstruct activity within each recorded region by accounting for communication between recorded regions, inputs from unrecorded regions, and local neural population dynamics—capturing complex features such as structured trial-to-trial variability and nonlinear, nonstationary, and state-dependent population dynamics. Fourth, accurate reconstruction of the recorded data does not guarantee accurate inference of the underlying communication.",
+      "source": "Liu, Sacks, Golub (2025). Accurate Identification of Communication Between Multiple Interacting Neural Populations. ICML 2025. arXiv:2506.19094",
+      "key_terms": ["inter-regional communication", "neural population dynamics", "trial-to-trial variability", "unobserved inputs"],
+      "category": "recent_paper",
+      "difficulty": "medium",
+      "reference_explanation": "Figuring out how brain regions talk to each other from neural recordings is hard for four interlocking reasons: you can't see the actual messages (only the neurons), there might be inputs coming from regions you didn't record, you have to simultaneously account for messages, hidden inputs, and each region's own internal dynamics, and even a model that perfectly reconstructs the recorded activity can still be wrong about what the regions are actually communicating."
+    },
+    {
+      "id": "v014",
+      "passage": "MR-LFADS is a probabilistic model that represents each recorded region with a distinct set of stacked recurrent neural networks (RNNs) that capture the region's potentially nonlinear and nonstationary population dynamics. MR-LFADS represents communication between observed regions and inputs from unobserved regions as disentangled sets of latent variables. Structured information bottlenecks encourage the model to infer inputs from unobserved regions only when their effects cannot be explained by communication among the recorded regions. MR-LFADS infers single-trial initial conditions and time-varying inputs that together account for trial-to-trial variability in the recorded activity.",
+      "source": "Liu, Sacks, Golub (2025). Accurate Identification of Communication Between Multiple Interacting Neural Populations. arXiv:2506.19094",
+      "key_terms": ["recurrent neural networks", "latent variables", "information bottleneck", "single-trial", "neural population dynamics"],
+      "category": "recent_paper",
+      "difficulty": "hard",
+      "reference_explanation": "MR-LFADS uses a separate RNN to model each brain region's local activity, then represents two distinct things as latent variables: messages flowing between regions and inputs coming from regions that weren't recorded. A regularization trick (the information bottleneck) makes the model prefer explaining a signal as inter-regional communication when possible, only invoking unobserved inputs when no recorded region could have produced it."
+    },
+    {
+      "id": "v015",
+      "passage": "We propose the Image-Brain BI-directional interpretability analysis framework (IBBI), which links brain activity and image features during decoding. In NeuroAdapter, each cross-attention layer computes attention scores Attn(Q, K, V), where queries Q come from spatial tokens in the U-Net of SD, and keys and values are derived from the fMRI embeddings. At each denoising timestep t, the attention weight matrix for head h in layer l quantifies the influence of each parcel token on each spatial query. Intuitively, each entry of this matrix reflects the degree of attention from a particular spatial query in the image to a specific parcel.",
+      "source": "Feng et al. (2025). Towards Interpretable Visual Decoding with Attention to Brain Representations. arXiv:2509.23566",
+      "key_terms": ["cross-attention", "attention weights", "queries keys values", "U-Net", "fMRI parcels"],
+      "category": "recent_paper",
+      "difficulty": "easy",
+      "reference_explanation": "The interpretability framework looks at the attention matrices already computed inside the diffusion model. Because the model uses cross-attention between image regions (queries) and brain parcels (keys/values), every entry in the attention matrix already says how much a specific image location is paying attention to a specific brain region. The authors just read this out as a measure of which brain areas drive which parts of the reconstructed image."
+    },
+    {
+      "id": "v016",
+      "passage": "An upstream region, area AP, receives a white noise stimulus and is trained to pass that stimulus through to a readout, effectively learning an identity function routing input to output. A downstream decision region, area AD, receives this routed stimulus as communication, integrates that stimulus over time into a decision variable, and reports the sign of that decision variable. This setup challenges models to disentangle external inputs, communication, and local dynamics—and in particular, accurately identifying and localizing the ground truth pass-through and integration computations. Though the integration dynamics are localized to AD in the data-generating network, an overly flexible model might instead learn integration in AP, yielding accurate data reconstruction but mislocalizing the computation.",
+      "source": "Liu, Sacks, Golub (2025). Accurate Identification of Communication Between Multiple Interacting Neural Populations. arXiv:2506.19094",
+      "key_terms": ["pass-decision network", "identity function", "decision variable", "integration", "mislocalization"],
+      "category": "recent_paper",
+      "difficulty": "medium",
+      "reference_explanation": "The authors built a synthetic two-region brain network as a testbed: one upstream region just passes a noisy signal forward, a downstream region accumulates that signal over time and decides which way it leaned. The point is to see whether a model can correctly figure out where the integration is happening — a too-flexible model might explain the data accurately by having the upstream region do the integration instead, which would reconstruct the activity correctly but completely mislocalize the computation."
+    }
+  ]
+}

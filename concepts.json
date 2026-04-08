@@ -208,5 +208,75 @@
     "definition": "A model that derives what a system *should* do to be optimal, rather than describing what it actually does. Example: 'what is the optimal strategy for this foraging task?' Then you compare the optimal solution to actual animal/human behavior.",
     "context": "Important in computational neuroscience. Bayesian models are often normative — they say what the brain should compute if it's being optimal. Deviations from the normative model are informative.",
     "typical_usage": "decision-making, perception, computational cognitive science"
+  },
+  {
+    "id": "c031",
+    "concept": "Neural predictivity (explained variance)",
+    "definition": "A metric for how well a computational model accounts for neural responses, computed by fitting a linear weighting of model unit outputs to predict each neural site's response on a training set, then measuring the goodness-of-fit (typically r-squared, normalized by trial-to-trial variability) on held-out images. The overall score for a brain area is usually the median explained variance across all measured sites.",
+    "context": "This is the standard yardstick used to compare CNNs and other models against electrophysiology or fMRI data in ventral-stream NeuroAI. Yamins et al. (2014) showed that performance on object categorization correlates strongly with IT neural predictivity, even when neural data isn't used for training.",
+    "typical_usage": "model-vs-brain comparison sections, Brain-Score-style benchmarks, papers fitting CNN features to V4/IT responses"
+  },
+  {
+    "id": "c032",
+    "concept": "Representational dissimilarity matrix (RDM)",
+    "definition": "A square matrix in which each entry is the dissimilarity (commonly 1 minus correlation, or Euclidean distance) between the response patterns elicited by a pair of stimuli in a given representation. The RDM summarizes the geometry of a representational space in a way that abstracts away from the specific units, enabling direct comparison between brains, species, and computational models.",
+    "context": "RDMs are the central object of representational similarity analysis (RSA). Two systems can be compared by correlating their RDMs even when they have completely different numbers of units or measurement modalities (spikes, voxels, model activations).",
+    "typical_usage": "RSA methods sections, brain-model comparisons, cross-species comparisons of visual cortex"
+  },
+  {
+    "id": "c033",
+    "concept": "Noise ceiling",
+    "definition": "An estimate of the maximum performance any model could achieve at predicting noisy data, given the noise level and inter-subject variability in that data. In RSA, the noise ceiling is typically computed as the expected RDM correlation between an ideal model and the measured RDMs, with upper and lower bounds derived from how well subjects' RDMs predict each other.",
+    "context": "Without a noise ceiling, it's impossible to know whether a model is failing because it's wrong or because the data are too noisy for any model to do better. A model that reaches the noise ceiling has fully explained the non-noise variance.",
+    "typical_usage": "model evaluation in fMRI/MEG studies, RSA toolboxes, papers benchmarking many models against the same dataset"
+  },
+  {
+    "id": "c034",
+    "concept": "Goal-driven (task-optimized) modeling",
+    "definition": "An approach to building models of brain areas in which the model's parameters are optimized to solve a behaviorally relevant task (e.g. object categorization), rather than fit directly to neural data. The resulting model's internal representations are then compared to the brain. The premise is that evolutionary and developmental pressure shaped neural circuits to perform specific tasks well, so task-optimized models should naturally resemble those circuits.",
+    "context": "This contrasts with bottom-up approaches that try to fit neural responses one neuron at a time. Yamins, DiCarlo, and colleagues popularized the goal-driven approach in NeuroAI, showing that CNNs trained for ImageNet classification end up matching IT cortex without ever seeing brain data.",
+    "typical_usage": "ventral stream modeling papers, audio cortex modeling (Kell et al.), navigation modeling (Banino et al.)"
+  },
+  {
+    "id": "c035",
+    "concept": "Path integration",
+    "definition": "The process by which an animal (or model agent) updates its estimate of its current position and heading using only self-motion cues like translational and angular velocity, without relying on external landmarks. Mathematically, it amounts to integrating a velocity signal over time to produce a position estimate.",
+    "context": "Path integration is one of the core functions attributed to the entorhinal-hippocampal system. Banino et al. (2018) showed that grid-cell-like representations emerge spontaneously in RNNs trained to path integrate, providing a computational account for why grid cells exist.",
+    "typical_usage": "spatial navigation models, hippocampal-entorhinal research, deep RL agents with spatial tasks"
+  },
+  {
+    "id": "c036",
+    "concept": "Vector-based navigation",
+    "definition": "A navigation strategy in which an agent computes a direct vector (distance and direction) from its current location to a remembered goal, allowing it to take novel shortcuts through unvisited space. This contrasts with path-based or topological strategies that rely on previously traversed routes.",
+    "context": "Grid cells have long been hypothesized to support vector-based navigation because their multi-scale periodic code allows the relative position of two points to be read out by comparing the codes. Banino et al. (2018) provided the first strong empirical evidence by showing that RL agents endowed with grid-like representations exhibit shortcut behavior reminiscent of mammals.",
+    "typical_usage": "spatial cognition theory, hippocampal-entorhinal modeling, navigation in artificial agents"
+  },
+  {
+    "id": "c037",
+    "concept": "Credit assignment problem",
+    "definition": "The problem of determining how much each parameter in a learning system (e.g. each synaptic weight) should change to improve performance on an objective. In deep networks the standard solution is backpropagation, which uses the chain rule to compute exact gradients. The biological version asks how the brain — without symmetric feedback weights or distinct forward/backward passes — could approximate something similar.",
+    "context": "Credit assignment is the central theoretical challenge for biologically plausible deep learning. Proposed solutions include feedback alignment, equilibrium propagation, predictive coding, dendritic error signals, and attention-gated reinforcement learning.",
+    "typical_usage": "biologically plausible learning rule papers, Richards et al. 2019 framework, dendritic computation research"
+  },
+  {
+    "id": "c038",
+    "concept": "Objective function (loss function)",
+    "definition": "A scalar function of a learning system's parameters and data that quantifies how well the system is performing. Learning is framed as the search for parameters that minimize (or maximize) this function. Examples include cross-entropy for classification, mean squared error for regression, the InfoNCE loss for contrastive learning, and the description-length objective in predictive coding.",
+    "context": "Richards et al. (2019) argue that systems neuroscience should treat objective functions, learning rules, and architectures as the three primary explanatory components for brain circuits, rather than trying to summarize what each individual neuron computes.",
+    "typical_usage": "any deep learning paper, theoretical neuroscience treatments of learning, normative modeling"
+  },
+  {
+    "id": "c039",
+    "concept": "Inductive bias",
+    "definition": "Prior assumptions built into a learning system that constrain which solutions it prefers, making some functions easier to learn than others. Inductive biases can be architectural (e.g. convolution, which builds in translation invariance) or implicit (e.g. the implicit regularization of gradient descent). Without inductive biases, the No Free Lunch Theorems imply no learner can perform well across all problems.",
+    "context": "In NeuroAI, inductive biases are how we connect evolutionary priors (built into the brain over generations) with within-lifetime learning. Richards et al. (2019) frame the brain's task-relevant inductive biases as the 'Brain Set' analog of the AI Set in machine learning.",
+    "typical_usage": "deep learning theory, evolutionary perspectives on the brain, comparisons of learned vs. hardwired behavior"
+  },
+  {
+    "id": "c040",
+    "concept": "Dropout",
+    "definition": "A regularization technique used during training of neural networks in which a random subset of units is silenced (set to zero) at each training step, with some fixed probability (commonly 50%). This prevents units from co-adapting and forces the network to learn more robust, distributed representations. At test time, all units are active.",
+    "context": "Dropout has been viewed as loosely analogous to noise in biological neural systems. Banino et al. (2018) found that dropout in the linear layer of their path-integration network was critical for the emergence of grid-like representations — without it, no grid cells appeared.",
+    "typical_usage": "deep learning training pipelines, papers analyzing what makes biologically realistic representations emerge in ANNs"
   }
 ]
